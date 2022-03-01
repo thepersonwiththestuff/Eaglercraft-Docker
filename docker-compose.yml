@@ -1,33 +1,37 @@
 version: "3.9"
 services:
   web:
-    build:
-      context: "."
-      dockerfile: Dockerfile.web
+#    build:
+#      context: "."
+#      dockerfile: Dockerfile.web
+    image: ghcr.io/redstonewizard08/eaglercraft-docker/web:main
     tty: true
     stdin_open: true
     ports:
       - "3090:3000"
   bukkit:
-    build:
-      context: "."
-      dockerfile: Dockerfile.bukkit
+#    build:
+#      context: "."
+#      dockerfile: Dockerfile.bukkit
+    image: ghcr.io/redstonewizard08/eaglercraft-docker/bukkit:main
     tty: true
     stdin_open: true
     ports:
       - "25569:25569"
   bungee:
-    build:
-      context: "."
-      dockerfile: Dockerfile.bungee
+#    build:
+#      context: "."
+#      dockerfile: Dockerfile.bungee
+    image: ghcr.io/redstonewizard08/eaglercraft-docker/bungee:main
     tty: true
     stdin_open: true
     ports:
       - "25565:25565"
   nginx:
-    build:
-      context: "."
-      dockerfile: Dockerfile.nginx
+#    build:
+#      context: "."
+#      dockerfile: Dockerfile.nginx
+    image: ghcr.io/redstonewizard08/eaglercraft-docker/nginx:main
     tty: true
     stdin_open: true
     ports:
