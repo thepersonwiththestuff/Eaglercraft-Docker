@@ -13,7 +13,7 @@ jobs:
       packages: write
     strategy:
       matrix:
-        arch: linux/amd64,linux/arm64
+        arch: amd64,arm64
         module: bukkit,bungee,nginx,web
     steps:
       - name: Checkout
@@ -41,4 +41,4 @@ jobs:
           file: Dockerfile.${{ matrix.module }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          platforms: ${{ matrix.arch }}
+          platforms: linux/${{ matrix.arch }}
