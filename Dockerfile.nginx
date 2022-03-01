@@ -1,0 +1,25 @@
+# syntax=docker/dockerfile:1
+FROM ubuntu:20.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Pacific/Los_Angeles
+ENV LC_ALL=C
+
+RUN apt-get update && \
+    apt-get --no-install-recommends -y upgrade && \
+    apt-get --no-install-recommends -y install \
+    bash sudo curl nginx && \
+    mkdir /webroot && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+SHELL [ "/bin/bash", "-c" ]
+
+ADD nginx/nginx.conf /etc/nginx/nginx.conf
+ADD start-nginx.sh /start-nginx.sh
+
+RUN chmod a+rx /start-nginx.sh
+
+EXPOSE 80
+
+CMD [ "/bin/bash", "/start-nginx.sh" ]
