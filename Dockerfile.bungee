@@ -19,6 +19,10 @@ ADD server/bungee /server/bungee
 
 EXPOSE 25565
 
-WORKDIR /server/bungee
+WORKDIR /bungee
 
-CMD [ "/usr/bin/java", "-Xmx32M", "-Xms32M", "-jar", "bungee-dist.jar" ]
+RUN mkdir -p /bukkit
+
+VOLUME "/bukkit"
+
+CMD [ "/bin/bash", "-c", "/usr/bin/cp -r /server/bungee/* /bungee && /usr/bin/java -Xmx32M -Xms32M -jar bungee-dist.jar" ]
