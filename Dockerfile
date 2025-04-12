@@ -22,6 +22,6 @@ WORKDIR /bukkit
 
 RUN mkdir -p /bukkit
 
-VOLUME "/bukkit"
+# VOLUME "/bukkit"
 
 CMD [ "/bin/bash", "-c", "/usr/bin/cp -r /server/bukkit/* /bukkit && /usr/bin/java -Xmx512M -Xms512M -jar craftbukkit-1.5.2-R1.0.jar nogui" ]
