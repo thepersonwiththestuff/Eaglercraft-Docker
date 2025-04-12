@@ -30,4 +30,4 @@ RUN chmod +x /run.sh
 EXPOSE 25569
 
 # Run the server when the container starts
-CMD [ "/bin/bash", "-c", "/usr/bin/cp -r /server/bukkit/* /bukkit && /usr/bin/java -Xmx512M -Xms512M -jar craftbukkit-1.5.2-R1.0.jar nogui" ]
+CMD [ "/bin/bash", "-c", "/usr/bin/cp -r /server/bukkit/* /bukkit && /usr/bin/java -Xms512M -Xmx1024M -jar craftbukkit-1.5.2-R1.0.jar nogui --port 25569 --bind 0.0.0.0" ]
