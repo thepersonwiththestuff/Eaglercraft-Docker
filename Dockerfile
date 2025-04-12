@@ -22,6 +22,8 @@ WORKDIR /bukkit
 
 RUN mkdir -p /bukkit
 
+CMD ["/run.sh", "start"]
+
 COPY run.sh /run.sh
 
 RUN chmod +x /run.sh
