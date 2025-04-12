@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Pacific/Los_Angeles
 ENV LC_ALL=C
 
+# Install dependencies
 RUN apt-get update && \
     apt-get --no-install-recommends -y upgrade && \
     apt-get --no-install-recommends -y install \
@@ -12,22 +13,21 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+# Set shell for running commands
 SHELL [ "/bin/bash", "-c" ]
 
-ADD server/bukkit /server/bukkit
-
-EXPOSE 25569
-
+# Set the working directory for your server
 WORKDIR /bukkit
 
-RUN mkdir -p /bukkit
-
-CMD ["/run.sh", "start"]
-
+# Copy the necessary files
+ADD server/bukkit /server/bukkit
 COPY run.sh /run.sh
 
+# Make sure run.sh is executable
 RUN chmod +x /run.sh
 
-# VOLUME "/bukkit"
+# Expose the port
+EXPOSE 25569
 
+# Run the server when the container starts
 CMD [ "/bin/bash", "-c", "/usr/bin/cp -r /server/bukkit/* /bukkit && /usr/bin/java -Xmx512M -Xms512M -jar craftbukkit-1.5.2-R1.0.jar nogui" ]
